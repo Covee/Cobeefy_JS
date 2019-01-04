@@ -1,5 +1,5 @@
-import x from './test';
+import Search from './models/Search';
 
 
-// const x = 23;
-// console.log(`dfdfdf // variable is ${x}`);
+const search = new Search('pizza');
+console.log(search);
