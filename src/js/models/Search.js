@@ -18,6 +18,7 @@ export default class Search {
             alert(error.message)
         }
         
+        console.log("test")
     
     }
 
