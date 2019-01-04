@@ -1,13 +1,5 @@
-import axios from 'axios';
+import Search from './models/Search';
 
 
-const APIKey = '1'
-const Main = 'https://www.themealdb.com/api/json/v1/'
-
-async function getResults(query) {
-    const res = await axios(`${Main}${APIKey}/list.php?c=list`)
-    console.log(res)
-
-}
-
-getResults();
+const search = new Search('pizza');
+console.log(search);
