@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 
-const APIKey = '1'
-const Main = 'https://www.themealdb.com/api/json/v1/'
+const APIKey = 'a57162f6ca754e2a355fd1a67c72ea8a'
+const Main = 'http://api.yummly.com/v1/api/recipes?_app_id=d4caa953&_app_key='
 
 export default class Search {
     constructor (query) {
@@ -11,8 +11,8 @@ export default class Search {
 
     async getResults() {
         try {
-            const res = await axios(`${Main}${APIKey}/list.php?c=list`)
-            const data = res.data.meals
+            const res = await axios(`${Main}${APIKey}&q=${this.query}`)
+            const data = res
             console.log(data)
         } catch(error) {
             alert(error.message)
