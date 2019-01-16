@@ -12,13 +12,14 @@ export default class Search {
     async getResults() {
         try {
             const res = await axios(`${Main}${APIKey}&q=${this.query}`)
-            const data = res
+            const data = res.data
             console.log(data)
+            this.result = data
         } catch(error) {
             alert(error.message)
         }
         
-        console.log("test")
+        // console.log(data)
     
     }
 

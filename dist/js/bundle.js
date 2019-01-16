@@ -4180,7 +4180,7 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nvar elements = exports.elements = {\n    searchFrom: document.querySelector('.search'),\n    searchInput: document.querySelector('.search__field')\n};\n\n//# sourceURL=webpack:///./src/js/views/base.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nvar elements = exports.elements = {\n    searchForm: document.querySelector('.search'),\n    searchInput: document.querySelector('.search__field')\n};\n\n//# sourceURL=webpack:///./src/js/views/base.js?");
 
 /***/ }),
 
@@ -4192,7 +4192,7 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.getInput = undefined;\n\nvar _base = __webpack_require__(/*! ./base */ \"./src/js/views/base.js\");\n\nvar getInput = exports.getInput = function getInput() {\n  return _base.elements.searchInput.value;\n};\n\n//# sourceURL=webpack:///./src/js/views/searchView.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nexports.renderResults = exports.getInput = undefined;\n\nvar _base = __webpack_require__(/*! ./base */ \"./src/js/views/base.js\");\n\nvar getInput = exports.getInput = function getInput() {\n    return _base.elements.searchInput.value;\n};\n\nvar renderRecipe = function renderRecipe(recipe) {\n    var markup = '\\n    // \\uC5EC\\uAE30\\uC5D0\\uB2E4\\uAC00 \\uC6B0\\uB9AC\\uAC00 \\uC4F0\\uB294 API \\uAC01\\uAC01 \\uB123\\uC5B4\\uC8FC\\uBA74 \\uB41C\\uB2E4.(json \\uD55C\\uBC88 \\uBCF4\\uACE0 \\uCC3E\\uC544\\uC11C \\uB9E4\\uCE6D\\uD574\\uB77C)\\n        <li>\\n            <a class=\"results__link results__link--active\" href=\"\">\\n                <figure class=\"results__fig\">\\n                    <img src=\"' + recipe.matches.smallImageUrls + '\" alt=\"Test\">\\n                </figure>\\n                <div class=\"results__data\">\\n                    <h4 class=\"results__name\">' + recipe.matches.sourceDisplayName + '</h4>\\n                    <p class=\"results__author\">' + recipe.matches.id + '</p>\\n                </div>\\n            </a>\\n        </li>\\n    ';\n};\n\nvar renderResults = exports.renderResults = function renderResults(recipes) {\n    recipes.foreach(renderRecipe);\n};\n\n//# sourceURL=webpack:///./src/js/views/searchView.js?");
 
 /***/ }),
 
