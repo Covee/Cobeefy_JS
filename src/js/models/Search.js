@@ -11,7 +11,7 @@ export default class Search {
 
     async getResults() {
         try {
-            const res = await axios(`${Main}${APIKey}&q=${this.query}`)
+            const res = await axios(`${Main}${APIKey}&q=${this.query}&maxResult=100&start=10`)
             const data = res.data
             console.log(data)
             this.result = data

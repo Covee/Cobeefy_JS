@@ -141,13 +141,16 @@ body {
 
 .loader {
   margin: 5rem auto;
-  text-align: center; }
+  text-align: center;
+  background-color: 'black'; }
   .loader svg {
     height: 5.5rem;
     width: 5.5rem;
     fill: #F59A83;
     transform-origin: 44% 50%;
-    animation: rotate 1.5s infinite linear; }
+    animation: rotate 1.5s infinite linear;
+    background-color: 'black';
+  }
 
 @keyframes rotate {
   0% {
