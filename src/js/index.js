@@ -1,12 +1,13 @@
 import Search from './models/Search';
 import * as searchView from './views/searchView';
 import { elements, renderLoader, clearLoader } from './views/base';
+import Recipe from './models/Recipe';
 
 
 const state = {};
 
 const controlSearch = async () => {
-    const query = searchView.getInput('');
+    const query = searchView.getInput();
     // console.log(query);
 
     if (query) {
@@ -14,13 +15,19 @@ const controlSearch = async () => {
 
         searchView.clearInput();
 
-        searchView.clearResults();
+        // searchView.clearResults();
         renderLoader(elements.searchRes);
+        
+        try {
+            await state.search.getResults();
+            clearLoader();
+            searchView.renderResults(state.search.result)
+        } catch(error) {
+            alert(error)
+            clearLoader();
+        }
 
-        await state.search.getResults();
-
-        clearLoader();
-        searchView.renderResults(state.search.result)
+        
     }
 }
 
@@ -41,4 +48,27 @@ elements.searchResPages.addEventListener('click', e => {
 
 
 // Recipe Controller
+const controlRecipe = async() => {
+    const id = window.location.hash.replace('#','');
+    // console.log(id)
 
+    if (id) {
+        state.recipe = new Recipe(id);
+        console.log(state.recipe);
+        await state.recipe.getRecipe();
+        //state.recipe.calcTime()
+        //state.recipe.calcServings()
+
+    }
+}
+
+//window.addEventListener('hashchange', controlRecipe);
+//window.addEventListener('load', controlRecipe);
+
+['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
+
+// elements.recipe.addEventListener('click', e => {
+//     if (e.target.matches('.btn-decrease')) {
+        
+//     }
+// })

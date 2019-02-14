@@ -14,7 +14,7 @@ export const clearResults = () => {
 const renderRecipe = recipe => {
     const markup = `
         <li>
-            <a class="results__link" href="">
+            <a class="results__link" href="#${recipe.id}">
                 <figure class="results__fig">
                     <img src="${recipe.smallImageUrls}" alt="Test">
                 </figure>
