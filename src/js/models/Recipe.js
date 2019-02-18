@@ -15,7 +15,7 @@ export default class Recipe {
         
             this.name = res.data.name;
             this.source = res.data.source.sourceDisplayName;
-            this.img = res.data.images.hostedMediumUrl;
+            this.img = res.data.images[0].hostedLargeUrl;
             this.ingredient = res.data.ingredientLines;
             this.cookTime = parseInt(res.data.totalTimeInSeconds)/60;
             this.numberOfServings = res.data.numberOfServings;
@@ -39,6 +39,7 @@ export default class Recipe {
     parseIngredients() {
         const unitsLong = ['tablespoons', 'tablespoon', 'Tbsp', 'ounces', 'ounce', 'teaspoons', 'teaspoon', 'cups', 'cup','pounds', 'pound', 'grams', 'portions', 'centimeters'];
         const unitsShort = ['tbsp', 'tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'cup', 'pound', 'pound', 'gram', 'portion', 'centimeter']
+        const units = [...unitsShort, 'kg', 'g']
 
         const fracToDec = str => { str.split('/').reduce((p, c) => p / c) }
 
