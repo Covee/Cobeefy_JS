@@ -36,6 +36,65 @@ export default class Recipe {
         this.servings = 4
     }
 
+    parseIngredients() {
+        const unitsLong = ['tablespoons', 'tablespoon', 'Tbsp', 'ounces', 'ounce', 'teaspoons', 'teaspoon', 'cups', 'cup','pounds', 'pound', 'grams', 'portions', 'centimeters'];
+        const unitsShort = ['tbsp', 'tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'cup', 'pound', 'pound', 'gram', 'portion', 'centimeter']
+
+        const fracToDec = str => { str.split('/').reduce((p, c) => p / c) }
+
+        const newIngredients = this.ingredient.map(el => {
+            // Unify units
+            let ingredient = el.toLowerCase();
+            unitsLong.forEach((unit, i) => {
+                ingredient = ingredient.replace(unit, unitsShort[i])
+            })
+
+            // remove () (regex in replace method)
+            ingredient = ingredient.replace(/ *\([^)]*\) */g, ' ');
+
+            // parsing ingredients
+            const arrIng = ingredient.split(' ')
+            const unitIndex = arrIng.findIndex(el2 => unitsShort.includes(el2))
+            let objIng;
+            if (unitIndex > -1) {
+                // only numbers(units) are accepted
+                const arrCount = arrIng.slice(0, unitIndex)
+                let count;
+                if (arrCount.length === 1) {
+                    eval(count = arrIng[0].replace(' ', '+'))
+                } else {
+                    count = eval((arrIng.slice(0, unitIndex)).join('+'))
+                    console.log(count)
+                }
+                
+                
+                
+
+                objIng = {
+                    count,
+                    unit: arrIng[unitIndex],
+                    ingredient: arrIng.slice(unitIndex + 1).join(' ')
+                }
+                
+            } else if (parseInt(arrIng[0], 10)) {
+                // first element is a number
+                objIng = {
+                    count: parseInt(arrIng[0], 10),
+                    unit: '',
+                    ingredient: arrIng.slice(1).join(' ')
+                }
+            } else if (unitIndex === -1) {
+                objIng = {
+                    count: 1,
+                    unit: '',
+                    ingredient
+                }
+            }
+
+            return objIng
+        })
+        this.ingredient = newIngredients
+    }
 
     updateServings(type) {
         const newServinges = type === 'dec' ? this.servings -1 : this.servings +1

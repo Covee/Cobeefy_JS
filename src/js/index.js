@@ -15,7 +15,7 @@ const controlSearch = async () => {
 
         searchView.clearInput();
 
-        // searchView.clearResults();
+        searchView.clearResults();
         renderLoader(elements.searchRes);
         
         try {
@@ -36,6 +36,7 @@ elements.searchForm.addEventListener('submit', e => {
     controlSearch();
 })
 
+
 elements.searchResPages.addEventListener('click', e => {
      const btn = e.target.closest('.btn-inline')
      if (btn) {
@@ -54,8 +55,10 @@ const controlRecipe = async() => {
 
     if (id) {
         state.recipe = new Recipe(id);
+
         console.log(state.recipe);
         await state.recipe.getRecipe();
+        state.recipe.parseIngredients();
         //state.recipe.calcTime()
         //state.recipe.calcServings()
 
