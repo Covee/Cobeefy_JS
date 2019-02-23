@@ -68,8 +68,6 @@ export default class Recipe {
                     console.log(count)
                 }
                 
-                
-                
 
                 objIng = {
                     count,
@@ -98,10 +96,10 @@ export default class Recipe {
     }
 
     updateServings(type) {
-        const newServinges = type === 'dec' ? this.servings -1 : this.servings +1
+        const newServings = type === 'dec' ? this.servings -1 : this.servings +1
 
         this.ingredient.forEach(ing => {
-            ing.count *= ing.count * (newServinges / this.servings)
+            ing.count *= ing.count * (newServings / this.servings)
         })
 
         this.servings = newServings
