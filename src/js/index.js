@@ -78,7 +78,10 @@ const controlRecipe = async() => {
         state.recipe.calcServings()
 
         clearLoader();
-        recipeView.renderRecipe(state.recipe)
+        recipeView.renderRecipe(
+            state.recipe,
+            state.likes.isLiked(id)
+        );
     }
 }
 
@@ -113,16 +116,18 @@ elements.shopping.addEventListener('click', e => {
 // Like Controller
 const controlLike = () => {
     if (!state.likes) state.likes = new Likes();
-    const currentID = state.recipe.id;
-    console.log(">>>>>> " + state.recipe.id)    // 끝에 id 넘버만 빼서 id로 써야 모든게 돌아감
+    let getId = state.recipe.id.split('-');
+    const currentID = parseInt(getId[getId.length-1]);
+    console.log(">>>>>> " + state.recipe.name)    // 끝에 id 넘버만 빼서 id로 써야 모든게 돌아감
+    // 그리고 원래의 id 값도 같이 저장하고 있어야 하트리스트에서 다시 불러올때 사용할 수 있음.
 
     // User has NOT yet liked current recipe
     if (!state.likes.isLiked(currentID)) {
         // Add like to the state
         const newLike = state.likes.addLike(
             currentID,
-            state.recipe.title,
-            state.recipe.author,
+            state.recipe.name,
+            state.recipe.source,
             state.recipe.img
         );
         // Toggle the like button
