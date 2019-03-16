@@ -19,7 +19,7 @@ export const highlightSelected = id => {
     document.querySelector(`.results__link[href*="${id}"]`).classList.add('results__link--active');
 }
 
-export const limitRecipeTitle = (title, limit = 17) => {
+export const limitRecipeTitle = (title, limit=17) => {
     const newTitle = [];
     if (title.length > limit) {
         title.split(' ').reduce((acc, cur) => {
@@ -28,8 +28,6 @@ export const limitRecipeTitle = (title, limit = 17) => {
             }
             return acc + cur.length;
         }, 0);
-
-        // return the result
         return `${newTitle.join(' ')} ...`;
     }
     return title;

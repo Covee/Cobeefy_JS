@@ -10,7 +10,7 @@ import Likes from './models/Likes';
 
 
 const state = {};
-window.state = state;
+
 
 const controlSearch = async () => {
     const query = searchView.getInput();
@@ -57,7 +57,6 @@ elements.searchResPages.addEventListener('click', e => {
 // Recipe Controller
 const controlRecipe = async() => {
     const id = window.location.hash.replace('#','');
-    // console.log(id)
 
     if (id) {
         recipeView.clearRecipe();
@@ -68,8 +67,6 @@ const controlRecipe = async() => {
         } 
 
         state.recipe = new Recipe(id);
-
-        console.log(state.recipe);
 
         await state.recipe.getRecipe();
         state.recipe.parseIngredients();
@@ -121,6 +118,7 @@ const controlLike = () => {
     const oID = state.recipe.id
     // console.log(">>>>>> " + state.recipe.oID)    // 끝에 id 넘버만 빼서 id로 써야 모든게 돌아감
     // 그리고 원래의 id 값도 같이 저장하고 있어야 하트리스트에서 다시 불러올때 사용할 수 있음.
+    console.log("like당==> " + state.likes.isLiked(currentID));
 
     // User has NOT yet liked current recipe
     if (!state.likes.isLiked(currentID)) {

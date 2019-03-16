@@ -20,7 +20,7 @@ export default class Likes {
     }
 
     isLiked(id) {
-        return this.likes.findIndex(el => el.id === id) !== -1;
+        return this.likes.findIndex(el => el.numID === id) !== -1;
     }
 
     getNumLikes() {

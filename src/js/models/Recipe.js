@@ -65,7 +65,7 @@ export default class Recipe {
                     eval(count = arrIng[0].replace(' ', '+'))
                 } else {
                     count = eval((arrIng.slice(0, unitIndex)).join('+'))
-                    console.log(count)
+                    // console.log(count)
                 }
                 
 
