@@ -68,7 +68,6 @@ export default class Recipe {
                     // console.log(count)
                 }
                 
-
                 objIng = {
                     count,
                     unit: arrIng[unitIndex],

@@ -114,11 +114,11 @@ elements.shopping.addEventListener('click', e => {
 const controlLike = () => {
     if (!state.likes) state.likes = new Likes();
     let getId = state.recipe.id.split('-');
-    const currentID = parseInt(getId[getId.length-1]);
-    const oID = state.recipe.id
+    let currentID = parseInt(getId[getId.length-1]);
+    let oID = state.recipe.id
     // console.log(">>>>>> " + state.recipe.oID)    // 끝에 id 넘버만 빼서 id로 써야 모든게 돌아감
     // 그리고 원래의 id 값도 같이 저장하고 있어야 하트리스트에서 다시 불러올때 사용할 수 있음.
-    console.log("like당==> " + state.likes.isLiked(currentID));
+    console.log("like 초기==> " + state.likes.isLiked(currentID) + '/ ' + currentID);
 
     // User has NOT yet liked current recipe
     if (!state.likes.isLiked(currentID)) {
@@ -139,13 +139,15 @@ const controlLike = () => {
     // User HAS liked current recipe
     } else {
         // Remove like from the state
-        state.likes.deleteLike(oID);
+        state.likes.deleteLike(currentID);
+        console.log("state에서 deleted 했어염===> " + currentID)
 
         // Toggle the like button
         likesView.toggleLikeBtn(false);
 
         // Remove like from UI list
         likesView.deleteLike(oID);
+        console.log("UI에서 deleted 했어염===> " + oID)
     }
     likesView.toggleLikeMenu(state.likes.getNumLikes());
 };
@@ -153,6 +155,7 @@ const controlLike = () => {
 // Restore liked recipes on page load
 window.addEventListener('load', () => {
     state.likes = new Likes();
+    console.log("dfjkdf[][][][-===> " + state.likes.id)
     
     // Restore likes
     state.likes.readStorage();
@@ -182,5 +185,3 @@ elements.recipe.addEventListener('click', e => {
     }
 })
 
-
-window.l = new List();
